@@ -1,0 +1,89 @@
+body, html {
+  font-family: Avenir Next,Helvetica Neue,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #fafafa;
+}
+.layout-header{
+  height: 50px;
+  border-bottom: 1px solid #fff;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 50px;
+  padding: 0 15px;
+}
+.layout-container{
+  padding: 15px;
+}
+.full-view{
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+// flex
+@mixin flex {
+  display: flex;
+}
+@mixin flex-between {
+  @include flex;
+  justify-content: space-between;
+}
+@mixin flex-around{
+  @include flex;
+  justify-content: space-around;
+}
+@mixin flex-center{
+  @include flex;
+  justify-content: center;
+  align-items:center;
+}
+@mixin column {
+  @include flex;
+  flex-direction: column;
+}
+@mixin column-between {
+  @include column;
+  justify-content: space-between;
+}
+@mixin column-around {
+  @include column;
+  justify-content: space-around;
+}
+@mixin column-center {
+  @include column;
+  justify-content: center;
+  align-items:center;
+}
+@mixin column-scroll {
+  flex: 1;
+  overflow: auto;
+}
+.layout-row{
+  @include flex;
+}
+.layout-row__between{
+  @include flex-between;
+}
+.layout-row__around{
+  @include flex-around;
+}
+
+.layout-column{
+  @include column;
+}
+.layout-column__between{
+  @include column-between;
+}
+.layout-column__around{
+  @include column-around;
+}
+.layout-column__scroll {
+  @include flex-between;
+  @include column-scroll
+}
+.flex{
+  flex: 1;
+}
+
+.right{
+  text-align: right;
+}
