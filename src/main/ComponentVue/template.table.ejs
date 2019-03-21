@@ -1,0 +1,78 @@
+<template lang="pug">
+.<%- className %>
+  el-table(
+    :data="dataSource"
+    border
+    fit
+    highlight-current-row
+    @selection-change="selectionChange"
+  )
+    el-table-column(type="selection")
+    <% for (let i = 0; i < columns.length; i++) { -%>
+el-table-column(label="<%= columns[i].displayName %>" label="<%= columns[i].name %>")
+    <% } -%>
+
+  el-pagination(
+    :total="page.total"
+    :current-page="page.pageNo"
+    :page-sizes="[10, 20, 50, 100]"
+    :page-size="page.pageSize"
+    layout="total, sizes, prev, pager, next, jumper"
+    @size-change="pageSizeChange"
+    @current-change="pageNoChange"
+  )
+</template>
+
+<script>
+export default {
+  name: <%- jsName %>,
+  props: {
+    dataSource: {
+      type: Array,
+      default: () => {
+        return []
+      }
+    },
+    page: {
+      type: Object,
+      default: {
+        pageSize: 20,
+        pageNo: 1,
+        total: 0
+      }
+    }
+  },
+  data () {
+    return {
+      selections: [] // 如果父级需要用到selections, 可在父级通过this.$refs.table.selections拿到数据
+    }
+  },
+  methods: {
+    /**
+     * @description selectionChange 勾选改变
+     * @param {Array} rows 已经勾选的行集合
+     */
+    selectionChange (rows) {
+      this.selections = rows
+    },
+
+    /**
+     * @description pageSizeChange 分页大小改变
+     * @param {Number, String} size 分页大小
+     */
+    pageSizeChange (size) {
+      let param = Object.assign({}, this.page, {pageSize: size})
+      this.$emit('changePage', param)
+    },
+
+    /**
+     * @description pageNoChange 页码改变
+     * @param {Number, String} no 页码改变
+     */
+    pageNoChange (no) {
+      let param = Object.assign({}, this.page, {pageNo: no})
+      this.$emit('changePage', param)
+    }
+  }
+}  
+</script>

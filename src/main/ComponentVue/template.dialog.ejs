@@ -1,0 +1,73 @@
+<template lang="pug">
+el-dialog.<%- className -%>(
+  :title="title"
+  :visible.sync="show"
+  @close="close"
+  @open="open"
+)
+  el-form(:model="form" label-width="120px" size="small")
+<%for (let i = 0; i < forms.length;i ++) { -%>
+    el-form-item(label="<%=forms[i].displayName%>" prop="<%=forms[i].name%>")
+      <%-forms[i].html%>
+<%}-%>
+  .btn-group.right
+    el-button(@click="close") 取 消
+    el-button(@click="submit") 确 定
+</template>
+
+<script>
+export default {
+  name: <%- jsName %>,
+  props: {
+    show: {
+      type: Boolean,
+      default: false
+    },
+    title: {
+      type: String,
+      default: ''
+    },
+    data: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    }
+  },
+  data () {
+    return {
+      form: {
+<%for (let i = 0; i < forms.length;i ++) { -%>
+        <%=forms[i].name-%>: <%- forms[i].defaultValue %>,
+<%}-%>
+      }
+    }
+  },
+  methods: {
+    /**
+     * @description close 关闭弹窗
+     * @param {null}
+     */
+    close () {
+      this.$emit('close')
+    },
+    /**
+     * @description open 打开弹窗
+     * @param {null}
+     */
+    open () {
+      // 如果data有值, 类型为编辑，赋值到form
+      if (data) {
+        this.from = Object.assign({}, this.form, this.data)
+      }
+    },
+    /**
+     * @description submit 点击确定
+     * @param {null}
+     */
+    submit () {
+      this.$emit('ok', this.form)
+    }
+  }
+}  
+</script>

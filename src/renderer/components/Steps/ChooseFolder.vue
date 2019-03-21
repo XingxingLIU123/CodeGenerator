@@ -39,7 +39,7 @@ export default {
     },
     beforeUpload (file, fileList) {
       this.fileList = [file]
-      this.$store.dispatch('folderAdd', file)
+      this.$store.dispatch('folderAdd', file.path)
       return false
     },
     toNext () {

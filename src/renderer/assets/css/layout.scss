@@ -77,7 +77,8 @@ body, html {
   @include column-around;
 }
 .layout-column__scroll {
-  @include flex-between;
+  flex-direction: column;
+  @include flex;
   @include column-scroll
 }
 .flex{
@@ -86,4 +87,8 @@ body, html {
 
 .right{
   text-align: right;
+}
+
+.pointer{ 
+  cursor: pointer;
 }

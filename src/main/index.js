@@ -1,6 +1,7 @@
-import { app, BrowserWindow } from 'electron'
-// import '../renderer/store/index.js'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import store from "../renderer/store/index.js"
+
+app.commandLine.appendSwitch("--disable-http-cache");
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -67,3 +68,18 @@ app.on('ready', () => {
   if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
 })
  */
+
+const fs = require('fs')
+const path = require('path')
+
+const view = require('./ViewsVue/index')
+const component = require('./ComponentVue/index')
+
+ipcMain.on('produce-front', function (event, arg) {
+  let data = store.state.json
+  let path = store.state.folder
+  new view(data, path, function (model, currentPath) {
+    component(model, currentPath)
+  })
+  event.sender.send('produce-front-success', '')
+})

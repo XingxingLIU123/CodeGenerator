@@ -1,0 +1,36 @@
+<template lang="pug">
+.<%= name.replace(/'/g, '') %>
+<% if (fn) { -%>
+  .operation.layout-row__between
+  <% if (fn.query) { -%>
+  .operation-filter
+<%- fn.query -%>
+    <% } -%>
+<% if (fn.fns.create || fn.fns.update || fn.fns.delete || fn.fns.batch_delete || fn.fns.import || fn.fns.export || fn.fns.batch_export) { %>
+    .operation-handle
+      <% for (let key in fn.fns) { -%>
+<%- fn.fns[key] -%>
+      <% } -%>
+    <% } -%>
+<% } %>
+  .content
+<%- component %>
+</template>
+
+<script >
+<%- imports %>
+export default {
+  name: <%- name %>,
+  components: {
+<%- components %>
+  },
+  data () {
+    return {
+      <%- data %>
+    }
+  },
+  methods: {
+<%- methods %>
+  }
+}
+</script>

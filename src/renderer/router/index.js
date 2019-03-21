@@ -16,6 +16,11 @@ export default new Router({
       component: (resolve) => require(['@/components/Steps/ModelSetting/index.vue'], resolve),
     },
     {
+      path: '/produce-code',
+      name: 'produce-code',
+      component: (resolve) => require(['@/components/Steps/ProduceCode.vue'], resolve),
+    },
+    {
       path: '*',
       redirect: '/choose-folder'
     }

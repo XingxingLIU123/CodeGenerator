@@ -13,9 +13,54 @@ export default new Vuex.Store({
       { title: '模块配置' },
       { title: '生成代码' }
     ],
-    folder: []
+    folder: '',
+    json: [
+      {
+        title: '项目管理',
+        name: 'Project',
+        modelList: [
+          {
+            active: true,
+            code: 'budget',
+            displayName: '预算管理',
+            model: {
+              fn: ['query', 'create', 'update', 'delete', 'batch_delete'],
+              views: ['table', 'dialog'],
+              forms: [
+                {
+                  FK_Dict: '',
+                  FK_Model: '',
+                  dataType: 'String',
+                  displayName: '单位',
+                  length: '5',
+                  name: 'unit',
+                  type: 'input',
+                  validateOptions: '',
+                  validateType: 'not_null'
+                },
+                {
+                  FK_Dict: '',
+                  FK_Model: '',
+                  dataType: 'Float',
+                  displayName: '预算',
+                  length: '5',
+                  name: 'budget',
+                  type: 'input',
+                  validateOptions: '',
+                  validateType: 'bigthan_zero'
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
   },
   actions: {
+    updateJson (store, json) {
+      console.log(json)
+      store.commit('UPDATE_JSON', json)
+    },
     folderClear (store) {
       store.commit('FOLDER_CLEAR')
     },
@@ -33,7 +78,11 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    UPDATE_JSON (state, json) {
+      state.json = json
+    },
     RESET (state) {
+      state.json = state.json
       state.currentStep = 0
       state.folder = []
     },
@@ -41,7 +90,7 @@ export default new Vuex.Store({
       state.folder = []
     },
     FOLDER_ADD (state, file) {
-      state.folder = [file]
+      state.folder = file
     },
     TO_NEXT (state) {
       state.currentStep ++
