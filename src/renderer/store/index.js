@@ -15,45 +15,45 @@ export default new Vuex.Store({
     ],
     folder: '',
     json: [
-      {
-        title: '项目管理',
-        name: 'Project',
-        modelList: [
-          {
-            active: true,
-            code: 'budget',
-            displayName: '预算管理',
-            model: {
-              fn: ['query', 'create', 'update', 'delete', 'batch_delete'],
-              views: ['table', 'dialog'],
-              forms: [
-                {
-                  FK_Dict: '',
-                  FK_Model: '',
-                  dataType: 'String',
-                  displayName: '单位',
-                  length: '5',
-                  name: 'unit',
-                  type: 'input',
-                  validateOptions: '',
-                  validateType: 'not_null'
-                },
-                {
-                  FK_Dict: '',
-                  FK_Model: '',
-                  dataType: 'Float',
-                  displayName: '预算',
-                  length: '5',
-                  name: 'budget',
-                  type: 'input',
-                  validateOptions: '',
-                  validateType: 'bigthan_zero'
-                }
-              ]
-            }
-          }
-        ]
-      }
+      // {
+      //   title: '项目管理',
+      //   name: 'Project',
+      //   modelList: [
+      //     {
+      //       active: true,
+      //       code: 'budget',
+      //       displayName: '预算管理',
+      //       model: {
+      //         fn: ['query', 'create', 'update', 'delete', 'batch_delete'],
+      //         views: ['table', 'dialog'],
+      //         forms: [
+      //           {
+      //             FK_Dict: '',
+      //             FK_Model: '',
+      //             dataType: 'String',
+      //             displayName: '单位',
+      //             length: '5',
+      //             name: 'unit',
+      //             type: 'input',
+      //             validateOptions: '',
+      //             validateType: 'not_null'
+      //           },
+      //           {
+      //             FK_Dict: '',
+      //             FK_Model: '',
+      //             dataType: 'Float',
+      //             displayName: '预算',
+      //             length: '5',
+      //             name: 'budget',
+      //             type: 'input',
+      //             validateOptions: '',
+      //             validateType: 'bigthan_zero'
+      //           }
+      //         ]
+      //       }
+      //     }
+      //   ]
+      // }
     ],
   },
   actions: {
@@ -82,7 +82,8 @@ export default new Vuex.Store({
       state.json = json
     },
     RESET (state) {
-      state.json = state.json
+      state.json = []
+      
       state.currentStep = 0
       state.folder = []
     },

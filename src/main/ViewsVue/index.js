@@ -18,11 +18,14 @@ const view = function ( json, pathName, callback ) {
     fs.mkdir(`${pathName}/src/views/pages/${item.name}/${stringUpCase(model.code)}`, function (err) {
       if (!err) {
         // 创建index.vue 入口文件
-        const option = setOption(model)
+        const option = setOption(stringUpCase(item.name), model)
         let viewTemp = ejs.render(str, option)
         const modelIndex = fs.writeFileSync(`${pathName}/src/views/pages/${item.name}/${stringUpCase(model.code)}/index.vue`, viewTemp)
-        // 创建views组件
-        callback(model, `${pathName}/src/views/pages/${item.name}/${stringUpCase(model.code)}`)
+        fs.mkdir(`${pathName}/src/components/${stringUpCase(item.name)}/${stringUpCase(model.code)}`, function (err) {
+          // 创建views组件
+          // callback(model, `${pathName}/src/views/pages/${item.name}/${stringUpCase(model.code)}`)
+          callback(model, `${pathName}/src/components/${stringUpCase(item.name)}/${stringUpCase(model.code)}`)
+        })
       }
     })
   }
@@ -42,11 +45,15 @@ const view = function ( json, pathName, callback ) {
         }
       })
     } else {
-      fs.mkdir(pathName + '/src/views/pages/' + item.name, function (err) {
+      fs.mkdir(pathName + '/src/components/' + stringUpCase(item.name), function (err) {
         if (!err) {
-          // 创建父级目录成功、创建模型目录
-          item.modelList.forEach(model => {
-            createFile(item, model)
+          fs.mkdir(pathName + '/src/views/pages/' + stringUpCase(item.name), function (err) {
+            if (!err) {
+              // 创建父级目录成功、创建模型目录
+              item.modelList.forEach(model => {
+                createFile(item, model)
+              })
+            }
           })
         }
       })

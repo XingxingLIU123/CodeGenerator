@@ -9,7 +9,7 @@
   )
     el-table-column(type="selection")
     <% for (let i = 0; i < columns.length; i++) { -%>
-el-table-column(label="<%= columns[i].displayName %>" label="<%= columns[i].name %>")
+el-table-column(label="<%= columns[i].displayName %>" prop="<%= columns[i].name %>")
     <% } -%>
 
   el-pagination(

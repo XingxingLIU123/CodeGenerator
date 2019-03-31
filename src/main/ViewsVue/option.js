@@ -1,7 +1,7 @@
 const stringUpCase = str => str.replace(str[0],str[0].toUpperCase());
 const stringLowCase = str => str.replace(str[0],str[0].toLowerCase());
 
-const setOption = model => {
+const setOption = (name, model) => {
   const views = model.model.views
   // 创建index.vue文件
   let option = {
@@ -45,7 +45,7 @@ const setOption = model => {
     }`
         )
         option.data.push(`tableData: []`)
-        option.data.push(`page: { pageSize: 20, pageNo: 1 }`)
+        option.data.push(`page: { pageSize: 20, pageNo: 1, total: 0 }`)
         break;
         case 'dialog':
         str += `(:show="dialogShow" :title="dialogTitle" @close="closeDialog" @ok="submitDialog" :data="dialogData")`
@@ -91,7 +91,7 @@ const setOption = model => {
     option.imports = (() => {
       let component = []
       views.forEach(view => {
-        component.push(`import ${stringUpCase(model.code)}${stringUpCase(view)} from './${stringUpCase(model.code)}${stringUpCase(view)}.vue'`)
+        component.push(`import ${stringUpCase(model.code)}${stringUpCase(view)} from '@/components/${name}/${stringUpCase(model.code)}/${stringUpCase(model.code)}${stringUpCase(view)}.vue'`)
       })
       return component.join('\n')
     })()
