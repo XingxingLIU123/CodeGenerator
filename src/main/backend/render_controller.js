@@ -64,7 +64,7 @@ public class <%- _uperName -%>Controller {
     @ApiOperation("update <%- _uperName -%>")
     @PreAuthorize("@pms.hasPermission('<%- _uperName -%>:update')")
     public BaseResponse update(@RequestBody <%- _uperName -%> <%- _lowerName -%>) {
-        DepartmentEntity existing = departmentRepository.findById(department.getId()).get();
+      <%- _uperName -%>Entity existing = <%- _lowerName -%>Repository.findById(<%- _lowerName -%>.getId()).get();
         BeanUtil.copyNonNullProperties(<%- _lowerName -%>, existing);
         <%- _lowerName -%>Repository.save(<%- _lowerName -%>);
         return BaseResponse.instance();
