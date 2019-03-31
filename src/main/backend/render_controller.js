@@ -1,8 +1,6 @@
 var ejs = require('ejs'),
     _ = require('lodash')
 let temp = `
-<% let _fieldUpperName = _name.charAt(0).toUpperCase()+ _name.substr(1, _name.lengh) %>
-
 package com.domita.backend.businese.<%- _moduleName -%>.<%- _lowerName -%>.controller;
 
 import com.domita.backend.common.domain.BaseResponse;
@@ -18,11 +16,16 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
+/**
+ * <%- _displayName -%> 模型接口控制器
+ * Domita
+ */
 @RestController
-@RequestMapping("/<%- _lowerName -%>")
+@RequestMapping("/<%- _moduleName -%>/<%- _lowerName -%>")
 public class <%- _uperName -%>Controller {
 
     @Autowired
@@ -38,6 +41,7 @@ public class <%- _uperName -%>Controller {
      */
     @GetMapping("/list")
     @ApiOperation("query all <%- _uperName -%>")
+    @PreAuthorize("@pms.hasPermission('<%- _uperName -%>:list')")
     public BaseResponse<List<<%- _uperName -%>Entity>> list() {
         Sort sort = new Sort(Sort.Direction.DESC,"id");
         List<<%- _uperName -%>Entity> all = <%- _lowerName -%>Repository.findAll(sort);
@@ -50,10 +54,21 @@ public class <%- _uperName -%>Controller {
      */
     @PostMapping
     @ApiOperation("create <%- _uperName -%>")
+    @PreAuthorize("@pms.hasPermission('<%- _uperName -%>:create')")
     public BaseResponse create(@RequestBody <%- _uperName -%>Entity <%- _lowerName -%>) {
       <%- _lowerName -%>Repository.save(<%- _lowerName -%>);
-        return BaseResponse.instance();
+      return BaseResponse.instance();
     }
+
+    @PutMapping
+    @ApiOperation("update <%- _uperName -%>")
+    @PreAuthorize("@pms.hasPermission('<%- _uperName -%>:update')")
+    public BaseResponse update(@RequestBody <%- _uperName -%> <%- _lowerName -%>) {
+        DepartmentEntity existing = departmentRepository.findById(department.getId()).get();
+        BeanUtil.copyNonNullProperties(<%- _lowerName -%>, existing);
+        <%- _lowerName -%>Repository.save(<%- _lowerName -%>);
+        return BaseResponse.instance();
+    }    
 
     /**
      * 根据Id获取详细信息
@@ -61,8 +76,9 @@ public class <%- _uperName -%>Controller {
      */
     @GetMapping("/{id}")
     @ApiOperation(value = "query <%- _uperName -%>Entity info with id", consumes = "GET", response = <%- _uperName -%>Entity.class)
+    @PreAuthorize("@pms.hasPermission('<%- _uperName -%>:detail')")
     public BaseResponse<<%- _uperName -%>Entity> findById(@PathVariable("id") Integer id) {
-        return new BaseResponse<>(<%- _lowerName -%>Repository.findById(id).get());
+      return new BaseResponse<>(<%- _lowerName -%>Repository.findById(id).get());
     }
 
     /**
@@ -70,6 +86,7 @@ public class <%- _uperName -%>Controller {
      * 
      */
     @DeleteMapping("/{id}")
+    @PreAuthorize("@pms.hasPermission('<%- _uperName -%>:delete')")
     public BaseResponse delete(@PathVariable("id") Integer id) {
       <%- _lowerName -%>Repository.deleteById(id);
       return new BaseResponse();
@@ -81,14 +98,15 @@ public class <%- _uperName -%>Controller {
      */
     @GetMapping("/pagelist/{pageSize}/{pageNo}")
     @ApiOperation("query <%- _uperName -%> by page")
+    @PreAuthorize("@pms.hasPermission('<%- _uperName -%>:list')")
     public BaseResponse<PageResult<<%- _uperName -%>Entity>> page(@PathVariable("pageSize") int pageSize, @PathVariable("pageNo") int pageNo) {
-        Page<<%- _uperName -%>Entity> page = <%- _lowerName -%>Repository.findAll(PageRequest.of(pageNo - 1, pageSize, Sort.Direction.DESC,"id"));
-        PageResult<<%- _uperName -%>Entity> result = new PageResult<<%- _uperName -%>Entity>();
-        result.setContent(page.getContent());
-        result.setPageNo(pageNo);
-        result.setPageSize(pageSize);
-        result.setTotalRecords(page.getTotalElements());
-        return new BaseResponse(result);
+      Page<<%- _uperName -%>Entity> page = <%- _lowerName -%>Repository.findAll(PageRequest.of(pageNo - 1, pageSize, Sort.Direction.DESC,"id"));
+      PageResult<<%- _uperName -%>Entity> result = new PageResult<<%- _uperName -%>Entity>();
+      result.setContent(page.getContent());
+      result.setPageNo(pageNo);
+      result.setPageSize(pageSize);
+      result.setTotalRecords(page.getTotalElements());
+      return new BaseResponse(result);
     }
 }
 

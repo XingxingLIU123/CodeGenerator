@@ -1,8 +1,6 @@
 var ejs = require('ejs'),
     _ = require('lodash')
 let temp = `
-<% let _fieldUpperName = _name.charAt(0).toUpperCase()+ _name.substr(1, _name.lengh) %>
-
 package com.domita.backend.businese.<%- _moduleName -%>.<%- _lowerName -%>.service;
 
 import com.domita.backend.businese.<%- _moduleName -%>.<%- _lowerName -%>.entity.<%- _uperName -%>Entity;
@@ -12,6 +10,10 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+/**
+ * <%- _displayName -%> 模型业务逻辑层
+ * Domita
+ */
 @Service
 public class <%- _uperName -%>Service {
     @Autowired
