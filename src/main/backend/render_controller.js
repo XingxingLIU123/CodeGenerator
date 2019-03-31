@@ -3,17 +3,17 @@ var ejs = require('ejs'),
 let temp = `
 <% let _fieldUpperName = _name.charAt(0).toUpperCase()+ _name.substr(1, _name.lengh) %>
 
-package com.claymore.fire.<%- _name -%>.controller;
+package com.domita.backend.businese.<%- _moduleName -%>.<%- _lowerName -%>.controller;
 
-import com.claymore.fire.common.domain.BaseResponse;
-import com.claymore.fire.common.domain.PageResult;
+import com.domita.backend.common.domain.BaseResponse;
+import com.domita.backend.common.domain.PageResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import com.claymore.fire.<%- _name -%>.entity.<%- _fieldUpperName -%>Entity;
-import com.claymore.fire.<%- _name -%>.repository.<%- _fieldUpperName -%>Repository;
-import com.claymore.fire.<%- _name -%>.service.<%- _fieldUpperName -%>Service;
+import com.domita.backend.businese.<%- _moduleName -%>.<%- _lowerName -%>.entity.<%- _uperName -%>Entity;
+import com.domita.backend.businese.<%- _moduleName -%>.<%- _lowerName -%>.repository.<%- _uperName -%>Repository;
+import com.domita.backend.businese.<%- _moduleName -%>.<%- _lowerName -%>.service.<%- _uperName -%>Service;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -22,14 +22,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/<%- _name -%>")
-public class <%- _fieldUpperName -%>Controller {
+@RequestMapping("/<%- _lowerName -%>")
+public class <%- _uperName -%>Controller {
 
     @Autowired
-    private <%- _fieldUpperName -%>Service <%- _name -%>Service;
+    private <%- _uperName -%>Service <%- _lowerName -%>Service;
 
     @Autowired
-    private <%- _fieldUpperName -%>Repository <%- _name -%>Repository;    
+    private <%- _uperName -%>Repository <%- _lowerName -%>Repository;    
 
 
     /**
@@ -37,10 +37,10 @@ public class <%- _fieldUpperName -%>Controller {
      * 
      */
     @GetMapping("/list")
-    @ApiOperation("query all <%- _fieldUpperName -%>")
-    public BaseResponse<List<<%- _fieldUpperName -%>Entity>> list() {
+    @ApiOperation("query all <%- _uperName -%>")
+    public BaseResponse<List<<%- _uperName -%>Entity>> list() {
         Sort sort = new Sort(Sort.Direction.DESC,"id");
-        List<<%- _fieldUpperName -%>Entity> all = <%- _name -%>Repository.findAll(sort);
+        List<<%- _uperName -%>Entity> all = <%- _lowerName -%>Repository.findAll(sort);
         return new BaseResponse(all);
     }
 
@@ -49,9 +49,9 @@ public class <%- _fieldUpperName -%>Controller {
      * 
      */
     @PostMapping
-    @ApiOperation("create <%- _name -%>")
-    public BaseResponse create(@RequestBody <%- _fieldUpperName -%>Entity <%- _name -%>) {
-      <%- _name -%>Repository.save(<%- _name -%>);
+    @ApiOperation("create <%- _uperName -%>")
+    public BaseResponse create(@RequestBody <%- _uperName -%>Entity <%- _lowerName -%>) {
+      <%- _lowerName -%>Repository.save(<%- _lowerName -%>);
         return BaseResponse.instance();
     }
 
@@ -60,9 +60,9 @@ public class <%- _fieldUpperName -%>Controller {
      * 
      */
     @GetMapping("/{id}")
-    @ApiOperation(value = "query <%- _fieldUpperName -%>Entity info with id", consumes = "GET", response = <%- _fieldUpperName -%>Entity.class)
-    public BaseResponse<<%- _fieldUpperName -%>Entity> findById(@PathVariable("id") Integer id) {
-        return new BaseResponse<>(<%- _name -%>Repository.findById(id).get());
+    @ApiOperation(value = "query <%- _uperName -%>Entity info with id", consumes = "GET", response = <%- _uperName -%>Entity.class)
+    public BaseResponse<<%- _uperName -%>Entity> findById(@PathVariable("id") Integer id) {
+        return new BaseResponse<>(<%- _lowerName -%>Repository.findById(id).get());
     }
 
     /**
@@ -71,7 +71,7 @@ public class <%- _fieldUpperName -%>Controller {
      */
     @DeleteMapping("/{id}")
     public BaseResponse delete(@PathVariable("id") Integer id) {
-      <%- _name -%>Repository.deleteById(id);
+      <%- _lowerName -%>Repository.deleteById(id);
       return new BaseResponse();
     }    
 
@@ -80,10 +80,10 @@ public class <%- _fieldUpperName -%>Controller {
      * 
      */
     @GetMapping("/pagelist/{pageSize}/{pageNo}")
-    @ApiOperation("query service zone by page")
-    public BaseResponse<PageResult<<%- _fieldUpperName -%>Entity>> page(@PathVariable("pageSize") int pageSize, @PathVariable("pageNo") int pageNo) {
-        Page<<%- _fieldUpperName -%>Entity> page = <%- _name -%>Repository.findAll(PageRequest.of(pageNo - 1, pageSize, Sort.Direction.DESC,"id"));
-        PageResult<<%- _fieldUpperName -%>Entity> result = new PageResult<<%- _fieldUpperName -%>Entity>();
+    @ApiOperation("query <%- _uperName -%> by page")
+    public BaseResponse<PageResult<<%- _uperName -%>Entity>> page(@PathVariable("pageSize") int pageSize, @PathVariable("pageNo") int pageNo) {
+        Page<<%- _uperName -%>Entity> page = <%- _lowerName -%>Repository.findAll(PageRequest.of(pageNo - 1, pageSize, Sort.Direction.DESC,"id"));
+        PageResult<<%- _uperName -%>Entity> result = new PageResult<<%- _uperName -%>Entity>();
         result.setContent(page.getContent());
         result.setPageNo(pageNo);
         result.setPageSize(pageSize);

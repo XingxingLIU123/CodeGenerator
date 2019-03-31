@@ -3,13 +3,13 @@ var ejs = require('ejs'),
 let temp = `
 <% let _fieldUpperName = _name.charAt(0).toUpperCase()+ _name.substr(1, _name.lengh) %>
 
-package com.claymore.fire.<%- _name -%>.repository;
+package com.domita.backend.businese.<%- _moduleName -%>.<%- _lowerName -%>.repository;
 
-import com.claymore.fire.<%- _name -%>.entity.<%- _fieldUpperName -%>Entity;
+import com.domita.backend.businese.<%- _moduleName -%>.<%- _lowerName -%>.entity.<%- _uperName -%>Entity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-public interface <%- _fieldUpperName -%>Repository extends JpaRepository<<%- _fieldUpperName -%>Entity, Integer>, JpaSpecificationExecutor<<%- _fieldUpperName -%>Entity> {
+public interface <%- _uperName -%>Repository extends JpaRepository<<%- _uperName -%>Entity, Integer>, JpaSpecificationExecutor<<%- _uperName -%>Entity> {
 
 }
 

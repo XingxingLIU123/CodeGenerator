@@ -1,36 +1,25 @@
 var ejs = require('ejs'),
     _ = require('lodash')
 let temp = `
-package com.claymore.fire.<%- _name -%>.entity;
+package com.domita.backend.businese.<%- _moduleName -%>.<%- _lowerName -%>.entity;
 
 import javax.persistence.*;
+import lombok.Data;
+import com.domita.backend.common.entity.BaseEntity;
 
 /**
  * <%- _displayName -%>实体模型
  */
 @Entity
-@Table(name = "<%- _name -%>")
-public class StudentEntity {
-    private int id;
-
+@Table(name = "<%- _lowerName -%>")
+@Data
+public class <%- _uperName -%>Entity extends BaseEntity {
   <%for (let i = 0; i < _fields.length;i ++) { -%>
     <% let _field = _fields[i] %>
     // <%- _field._displayName -%>
 
     private <%- _field._dataType._code -%> <%- _field._name -%>;
   <%}-%>    
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
 
     <%for (let i = 0; i < _fields.length;i ++) { -%>
       <% let _field = _fields[i] %>

@@ -14,6 +14,8 @@ const service = require('./render_service')
 const folderNames = ['controller', 'entity', 'repository', 'service']
 
 const backEnd = (data, path) => {
+  console.error(path)
+  console.error(data)
   // 创建模块目录
   data.forEach(item => {
     fs.mkdir(path + '/' + stringUpCase(item.name), function (err) {
@@ -34,8 +36,17 @@ const backEnd = (data, path) => {
         setTimeout(() => {
           item.modelList.forEach(model => {
             let option = {
+              // 模块名
+              _moduleName: item.name,
+              // 模型英文名
               _name: stringUpCase(model.code),
+              // 模型首字母大写名
+              _uperName: stringUpCase(model.code),
+              // 模型首字母小写名
+              _lowerName: stringLowCase(model.code),
+              // 展示名，用于备注及注释
               _displayName: model.displayName,
+              // 字段
               _fields: model.model.forms.map(f => {
                 return {
                   _name: f.name,
@@ -46,6 +57,7 @@ const backEnd = (data, path) => {
                 }
               })
             }
+            console.log('=============-------=============')
             console.log(option)
             folderNames.forEach(folder => {
               let str = ''
