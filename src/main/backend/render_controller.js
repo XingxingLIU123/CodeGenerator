@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.access.prepost.PreAuthorize;
+import com.domita.backend.common.util.BeanUtil;
 
 import java.util.List;
 
@@ -63,7 +64,7 @@ public class <%- _uperName -%>Controller {
     @PutMapping
     @ApiOperation("update <%- _uperName -%>")
     @PreAuthorize("@pms.hasPermission('<%- _uperName -%>:update')")
-    public BaseResponse update(@RequestBody <%- _uperName -%> <%- _lowerName -%>) {
+    public BaseResponse update(@RequestBody <%- _uperName -%>Entity <%- _lowerName -%>) {
       <%- _uperName -%>Entity existing = <%- _lowerName -%>Repository.findById(<%- _lowerName -%>.getId()).get();
         BeanUtil.copyNonNullProperties(<%- _lowerName -%>, existing);
         <%- _lowerName -%>Repository.save(<%- _lowerName -%>);
