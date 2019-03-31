@@ -74,6 +74,7 @@ const path = require('path')
 
 const view = require('./ViewsVue/index')
 const component = require('./ComponentVue/index')
+const backend = require('./backend/index')
 
 ipcMain.on('produce-front', function (event, arg) {
   let data = store.state.json
@@ -82,4 +83,12 @@ ipcMain.on('produce-front', function (event, arg) {
     component(model, currentPath)
   })
   event.sender.send('produce-front-success', '')
+})
+
+ipcMain.on('produce-backend', function (event, arg) {
+  console.log(arg)
+  let path = arg
+  let data = store.state.json
+  new backend(data, path)
+  event.sender.send('produce-backend-success', '')
 })

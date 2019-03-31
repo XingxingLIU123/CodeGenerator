@@ -52,13 +52,12 @@ export default new Vuex.Store({
       //         ]
       //       }
       //     }
-      //   ]
+        // ]
       // }
     ],
   },
   actions: {
     updateJson (store, json) {
-      console.log(json)
       store.commit('UPDATE_JSON', json)
     },
     folderClear (store) {
