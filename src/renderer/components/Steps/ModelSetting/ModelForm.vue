@@ -50,6 +50,16 @@
             el-option(label="多行输入框" value="textarea")
             el-option(label="下拉框" value="select")
             el-option(label="日期选择器" value="date")
+        el-form-item(label="是否可检索:" value="isSearch")
+          el-radio(v-model="form.isSearch" :label="0") 否
+          el-radio(v-model="form.isSearch" :label="1") 是
+        el-form-item(label="是否可排序:" value="isSort")
+          el-radio(v-model="form.isSort" :label="0") 否
+          el-radio(v-model="form.isSort" :label="1") 是
+        el-form-item(label="是否在表格显示:" value="isShowInTable")
+          el-radio(v-model="form.isShowInTable" :label="0") 否
+          el-radio(v-model="form.isShowInTable" :label="1") 是
+        
     .btn-group
       a-button(@click="reset") 重 置
       a-button(type="primary" style="margin-left: 10px" @click="update") 保 存
