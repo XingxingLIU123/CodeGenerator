@@ -18,7 +18,7 @@ const view = function ( json, pathName, callback ) {
     fs.mkdir(`${pathName}/src/views/pages/${item.name}/${stringUpCase(model.code)}`, function (err) {
       if (!err) {
         // 创建index.vue 入口文件
-        const option = setOption(stringUpCase(item.name), model)
+        const option = setOption(stringUpCase(item.name), model, item.title)
         let viewTemp = ejs.render(str, option)
         const modelIndex = fs.writeFileSync(`${pathName}/src/views/pages/${item.name}/${stringUpCase(model.code)}/index.vue`, viewTemp)
         fs.mkdir(`${pathName}/src/components/${stringUpCase(item.name)}/${stringUpCase(model.code)}`, function (err) {
@@ -30,6 +30,8 @@ const view = function ( json, pathName, callback ) {
     })
   }
 
+  // 创建services文件夹
+  
   json.forEach(item => {
     // 是否存在模块目录 
     if (files.includes(item.name)) {

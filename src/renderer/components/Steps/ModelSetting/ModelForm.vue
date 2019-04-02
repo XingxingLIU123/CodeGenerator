@@ -31,11 +31,9 @@
           el-select(v-model="form.dataType")
             el-option(v-for="type in types" :key="type.code" :label="type.name" :value="type.code")
         el-form-item(label="模型关联：" prop="FK_Model" v-if="form.dataType === 'FK_Model'")
-          el-select(v-model="form.FK_Model")
-            el-option(:label="'模型-1'" :value="'模型-1'")
+          el-input(v-model="form.FK_Model" placeholder="请输入模型code")
         el-form-item(label="字典关联：" prop="FK_Dict" v-if="form.dataType === 'FK_Dict'")
-          el-select(v-model="form.FK_Dict")
-            el-option(:label="'字典-1'" :value="'字典-1'")
+          el-input(v-model="form.FK_Dict" placeholder="请输入字典健名")
         el-form-item(label="数据长度：" prop="length")
           el-input(v-model="form.length")
         el-form-item(label="校验类型：" prop="validateType")
@@ -46,10 +44,10 @@
           el-input(v-model="form.validateOptions")
         el-form-item(label="控件类型：" prop="type")
           el-select(v-model="form.type")
-            el-option(label="单行输入框" value="input")
-            el-option(label="多行输入框" value="textarea")
+            el-option(label="单行输入框" value="input" v-show="form.dataType !== 'FK_Dict'")
+            el-option(label="多行输入框" value="textarea" v-show="form.dataType !== 'FK_Dict'")
             el-option(label="下拉框" value="select")
-            el-option(label="日期选择器" value="date")
+            el-option(label="日期选择器" value="date" v-show="form.dataType !== 'FK_Dict'")
         el-form-item(label="是否可检索:" value="isSearch")
           el-radio(v-model="form.isSearch" :label="0") 否
           el-radio(v-model="form.isSearch" :label="1") 是
@@ -153,7 +151,10 @@ export default {
         length: '',
         validateType: '',
         validateOptions: '',
-        type: ''
+        type: '',
+        isSearch: 0,
+        isSort: 0,
+        isShowInTable: 0
       })
     },
     removeFiled (index) {

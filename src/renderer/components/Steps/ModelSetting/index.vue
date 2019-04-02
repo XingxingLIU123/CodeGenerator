@@ -45,8 +45,12 @@
     a-button(
       type="primary"
       @click="toNext"
-      :disabled="panes.length === 0"
     ) 下一步
+    //- a-button(
+    //-   type="primary"
+    //-   @click="toNext"
+    //-   :disabled="panes.length === 0"
+    //- ) 下一步
 </template>
 
 <script>
@@ -152,7 +156,7 @@ export default {
       })
     },
     toNext () {
-      this.$store.dispatch('updateJson', this.panes)
+      // this.$store.dispatch('updateJson', this.panes)
       this.$store.dispatch('toNext')
       this.$router.push('/produce-code')
     }

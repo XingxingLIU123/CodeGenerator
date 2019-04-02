@@ -15,45 +15,51 @@ export default new Vuex.Store({
     ],
     folder: '',
     json: [
-      // {
-      //   title: '项目管理',
-      //   name: 'Project',
-      //   modelList: [
-      //     {
-      //       active: true,
-      //       code: 'budget',
-      //       displayName: '预算管理',
-      //       model: {
-      //         fn: ['query', 'create', 'update', 'delete', 'batch_delete'],
-      //         views: ['table', 'dialog'],
-      //         forms: [
-      //           {
-      //             FK_Dict: '',
-      //             FK_Model: '',
-      //             dataType: 'String',
-      //             displayName: '单位',
-      //             length: '5',
-      //             name: 'unit',
-      //             type: 'input',
-      //             validateOptions: '',
-      //             validateType: 'not_null'
-      //           },
-      //           {
-      //             FK_Dict: '',
-      //             FK_Model: '',
-      //             dataType: 'Float',
-      //             displayName: '预算',
-      //             length: '5',
-      //             name: 'budget',
-      //             type: 'input',
-      //             validateOptions: '',
-      //             validateType: 'bigthan_zero'
-      //           }
-      //         ]
-      //       }
-      //     }
-        // ]
-      // }
+      {
+        title: '项目管理',
+        name: 'Project',
+        modelList: [
+          {
+            active: true,
+            code: 'budget',
+            displayName: '预算管理',
+            model: {
+              fn: ['query', 'create', 'update', 'delete', 'batch_delete'],
+              views: ['table', 'dialog'],
+              forms: [
+                {
+                  FK_Dict: '',
+                  FK_Model: '',
+                  dataType: 'String',
+                  displayName: '单位',
+                  length: '5',
+                  name: 'unit',
+                  type: 'input',
+                  validateOptions: '',
+                  validateType: 'not_null',
+                  isSort: 0,
+                  isShowInTable: 1,
+                  isSearch: 0
+                },
+                {
+                  FK_Dict: '',
+                  FK_Model: '',
+                  dataType: 'Float',
+                  displayName: '预算',
+                  length: '5',
+                  name: 'budget',
+                  type: 'input',
+                  validateOptions: '',
+                  validateType: 'bigthan_zero',
+                  isSort: 0,
+                  isShowInTable: 1,
+                  isSearch: 0
+                }
+              ]
+            }
+          }
+        ]
+      }
     ],
   },
   actions: {

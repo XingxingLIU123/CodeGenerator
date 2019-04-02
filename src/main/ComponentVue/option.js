@@ -7,9 +7,11 @@ const option = {
     op.jsName = `'${stringUpCase(model.code)}Table'`
     op.className = `${stringLowCase(model.code)}-table`
     op.columns = model.model.forms.map(item => {
-      return {
-        displayName: item.displayName,
-        name: item.name
+      if (item.isShowInTable) {
+        return {
+          displayName: item.displayName,
+          name: item.name
+        }
       }
     })
     return op
@@ -54,6 +56,9 @@ const option = {
         break
         case 'select':
         obj.html = `el-select(v-model="form.${item.name}")\n  el-option(label="" value="")`
+        if (item.dataType === 'FK_Dict') {
+          obj.html = `el-select(v-model="form.${item.name}")\n  el-option(v-for="item in DICTS.${item.FK_Dict}" :key="item.value" :label="item.label" :value="item.value")`
+        }
         break
         case 'date':
         obj.html = `el-date-picker(v-model="form.${item.name}" type="datetime")`
