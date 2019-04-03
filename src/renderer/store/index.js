@@ -59,7 +59,7 @@ export default new Vuex.Store({
                   isRequired: 1
                 },
                 {
-                  FK_Dict: 'gender',
+                  FK_Dict: 'gender_dic_id',
                   FK_Model: '',
                   dataType: 'FK_Dict',
                   displayName: '性别',
@@ -72,7 +72,22 @@ export default new Vuex.Store({
                   isShowInTable: 1,
                   isSearch: 0,
                   isRequired: 1
-                }
+                },
+                {
+                  FK_Dict: '',
+                  FK_Model: 'teacher',
+                  dataType: 'FK_Model',
+                  displayName: '教师',
+                  length: '5',
+                  name: 'teacher_id',
+                  type: 'select',
+                  validateOptions: '',
+                  validateType: 'not_null',
+                  isSort: 0,
+                  isShowInTable: 1,
+                  isSearch: 0,
+                  isRequired: 1
+                },
               ]
             }
           }

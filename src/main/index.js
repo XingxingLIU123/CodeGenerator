@@ -88,8 +88,8 @@ ipcMain.on('produce-front', function (event, arg) {
 })
 
 ipcMain.on('produce-backend', function (event, arg) {
-  let path = arg
-  let data = store.state.json
-  new backend(data, path)
+  // let path = arg
+  // let data = store.state.json
+  backend.default(arg.data, arg.project)
   event.sender.send('produce-backend-success', '')
 })

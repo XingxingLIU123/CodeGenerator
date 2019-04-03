@@ -73,7 +73,11 @@ export default {
     },
     produceBackendCode () {
       if (this.path !== '') {
-        ipc.send('produce-backend', this.path)
+        ipc.send('produce-backend', {
+          data: this.$store.state.json,
+          project: this.path,
+          option: this.$store.state.option
+        })
       } else {
         this.$message.error('请选择后端路径')
       }

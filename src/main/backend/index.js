@@ -15,6 +15,7 @@ const patchsql = require('./render_patchsql')
 const folderNames = ['controller', 'entity', 'repository', 'service', 'patchsql']
 
 const backEnd = (data, path) => {
+  console.log('hewewee')
   console.error(path)
   console.error(data)
   // 创建模块目录
@@ -89,4 +90,4 @@ const backEnd = (data, path) => {
   })
 }
 
-module.exports = backEnd
+export default backEnd
