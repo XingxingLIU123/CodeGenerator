@@ -75,18 +75,19 @@ const path = require('path')
 const view = require('./ViewsVue/index')
 const component = require('./ComponentVue/index')
 const backend = require('./backend/index')
+const services = require('./ServicesJs/index')
+const Router = require('./Router/index')
 
 ipcMain.on('produce-front', function (event, arg) {
-  let data = store.state.json
-  let path = store.state.folder
-  new view(data, path, function (model, currentPath) {
+  Router.default(arg.data, arg.project, arg.option.routePath)
+  new services(arg.data, arg.project, arg.option.apiPath)
+  new view(arg.data, arg.project, arg.option, function (model, currentPath) {
     component(model, currentPath)
+    event.sender.send('produce-front-success', '')
   })
-  event.sender.send('produce-front-success', '')
 })
 
 ipcMain.on('produce-backend', function (event, arg) {
-  console.log(arg)
   let path = arg
   let data = store.state.json
   new backend(data, path)

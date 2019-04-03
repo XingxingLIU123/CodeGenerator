@@ -57,7 +57,8 @@ const backEnd = (data, path) => {
                   },
                   _displayName: f.displayName
                 }
-              })
+              }),
+              _fns: model.model.fn
             }
             console.log('=============-------=============')
             console.log(option)

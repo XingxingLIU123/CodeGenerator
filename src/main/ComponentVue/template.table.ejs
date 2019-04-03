@@ -12,6 +12,13 @@
 el-table-column(label="<%= columns[i].displayName %>" prop="<%= columns[i].name %>")
     <% } -%>
 
+    el-table-column(label="操作" fixed="right")
+      template(slot-scope="scope")
+        .layout-row
+          <% for(let i = 0; i < handles.length; i++) { -%>
+el-button(@click="<%-handles[i].eval%>" type="<%=handles[i].type%>" size="small") <%=handles[i].text%>
+          <% } -%>
+
   el-pagination(
     :total="page.total"
     :current-page="page.pageNo"
@@ -54,6 +61,7 @@ export default {
      */
     selectionChange (rows) {
       this.selections = rows
+      this.$emit('selectionChange', rows)
     },
 
     /**

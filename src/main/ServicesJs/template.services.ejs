@@ -1,0 +1,11 @@
+import axios from 'axios';
+
+<% for (let i = 0; i < apis.length; i++) { -%>
+  <%- apis[i] %>
+<% } -%>
+
+export {
+<% for (let i = 0; i < apiNames.length; i++) { -%>
+  <%- apiNames[i] %>,
+<% } -%>
+}
