@@ -55,7 +55,7 @@ const setOption = (name, model, title) => {
                  * @param {Object} row 当前行数据
                  */
                 updateRow (row) {
-                  this.dialogShow = false
+                  this.dialogShow = true
                   this.dialogData = Object.assign({}, row)
                   this.dialogTitle = '编辑'
                   this.dialogType = 'update'
@@ -75,7 +75,7 @@ const setOption = (name, model, title) => {
                   // TODO: 确定ids是数组还是字符串
                   let ids = [row.id]
                   deleteTableData(id).then(res => {
-                    if (res.data.code === 200) {
+                    if (res.data.code == 200) {
                       this.$message.success('数据删除成功')
                       this.getTableData()
                     } else {
@@ -142,7 +142,7 @@ const setOption = (name, model, title) => {
             this.isTableLoading = true // 打开loading
             getTableData(param).then(res => {
               this.$nextTick(() => { this.isTableLoading = false }) // 关闭loading
-              if (res.data.code === 200) {
+              if (res.data.code == 200) {
                 this.tableData = res.data.data.rows // 表格赋值
                 this.page.total = res.data.data.total // page总数赋值
               } else {
@@ -190,7 +190,7 @@ const setOption = (name, model, title) => {
           submitDialog (param) {
             let method = this.dialogType === 'add' ? addTableData : updateTableData
             method(param).then(res => {
-              if (res.data.code === 200) {
+              if (res.data.code == 200) {
                 this.$message.success(this.dialogType === 'add' ? '添加数据成功' : '修改数据成功')
                 this.closeDialog()
                 this.getTableData()
@@ -261,7 +261,7 @@ const setOption = (name, model, title) => {
             batchDeleteData () {
               let ids = this.selectionRows.map(n => n.id)
               BatchDeleteTableData(ids).then(res => {
-                if (res.data.code === 200) {
+                if (res.data.code == 200) {
                   this.$message.success('数据删除成功')
                   this.getTableData()
                 } else {

@@ -44,7 +44,7 @@ export default {
       <%- datas %>
     }
   },
-  create () {
+  created () {
 <%- create %>
   },
   methods: {
@@ -54,16 +54,16 @@ export default {
      */
     close () {
       this.$emit('close')
+      this.$refs.form.clearValidate()
     },
     /**
      * @description open 打开弹窗
      * @param {null}
      */
     open () {
-      this.$refs.form.clearValidate()
       // 如果data有值, 类型为编辑，赋值到form
-      if (data) {
-        this.from = Object.assign({}, this.form, this.data)
+      if (this.data) {
+        this.form = Object.assign({}, this.form, this.data)
       }
     },
     /**
