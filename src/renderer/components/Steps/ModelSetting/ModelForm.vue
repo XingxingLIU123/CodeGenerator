@@ -32,6 +32,8 @@
             el-option(v-for="type in types" :key="type.code" :label="type.name" :value="type.code")
         el-form-item(label="模型关联：" prop="FK_Model" v-if="form.dataType === 'FK_Model'")
           el-input(v-model="form.FK_Model" placeholder="请输入模型code")
+        el-form-item(label="模型关联显示名称：" prop="FK_Model_displayName" v-if="form.dataType === 'FK_Model'")
+          el-input(v-model="form.FK_Model_displayName" placeholder="请输入需要显示的模型名称")
         el-form-item(label="字典关联：" prop="FK_Dict" v-if="form.dataType === 'FK_Dict'")
           el-input(v-model="form.FK_Dict" placeholder="请输入字典健名")
         el-form-item(label="数据长度：" prop="length")
@@ -149,6 +151,7 @@ export default {
         name: '',
         displayName: '',
         dataType: '',
+        FK_Model_displayName: '',
         FK_Model: '',
         FK_Dict: '',
         length: '',

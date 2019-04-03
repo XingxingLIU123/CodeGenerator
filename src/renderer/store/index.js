@@ -46,6 +46,7 @@ export default new Vuex.Store({
                 {
                   FK_Dict: '',
                   FK_Model: '',
+                  FK_Model_displayName: '',
                   dataType: 'Integer',
                   displayName: '年龄',
                   length: '5',
@@ -61,6 +62,7 @@ export default new Vuex.Store({
                 {
                   FK_Dict: 'gender_dic_id',
                   FK_Model: '',
+                  FK_Model_displayName: '',
                   dataType: 'FK_Dict',
                   displayName: '性别',
                   length: '5',
@@ -76,6 +78,7 @@ export default new Vuex.Store({
                 {
                   FK_Dict: '',
                   FK_Model: 'teacher',
+                  FK_Model_displayName: 'name',
                   dataType: 'FK_Model',
                   displayName: '教师',
                   length: '5',
