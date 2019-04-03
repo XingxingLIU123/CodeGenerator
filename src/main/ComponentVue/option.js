@@ -89,7 +89,7 @@ const option = {
         case 'select':
         obj.html = `el-select(v-model="form.${item.name}" size="small")\n  el-option(label="" value="")`
         if (item.dataType === 'FK_Dict') {
-          obj.html = `el-select(v-model="form.${item.name}" size="small")\n  el-option(v-for="item in DICTS.${item.FK_Dict}" :key="item.value" :label="item.label" :value="item.value")`
+          obj.html = `el-select(v-model="form.${item.name}" size="small")\n        el-option(v-for="item in DICTS.${item.FK_Dict}.dicts" :key="item.id" :label="item.dictValueDisplayName" :value="item.dictValue")`
         }
         break
         case 'date':

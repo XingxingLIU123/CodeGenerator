@@ -70,7 +70,7 @@ export default {
 .ant-upload.ant-upload-drag{
   width: 50%;
   margin: 0 auto;
-  margin-top: 20vh;
+  margin-top: 5vh;
 }
 </style>
 

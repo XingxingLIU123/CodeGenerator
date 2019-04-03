@@ -17,63 +17,24 @@ export default new Vuex.Store({
     option: {},
     json: [
       {
-        title: '项目管理',
-        name: 'Project',
+        title: '教务管理',
+        name: 'edu',
         modelList: [
           {
             active: true,
-            code: 'budget',
-            displayName: '预算管理',
+            code: 'student',
+            displayName: '学生管理',
             model: {
-              fn: ['query', 'create', 'update', 'delete', 'batch_delete'],
+              fn: ['query', 'create', 'update', 'delete', 'batch_delete', 'import', 'export', 'batch_export'],
               views: ['table', 'dialog'],
               forms: [
                 {
                   FK_Dict: '',
                   FK_Model: '',
                   dataType: 'String',
-                  displayName: '单位',
+                  displayName: '姓名',
                   length: '5',
-                  name: 'unit',
-                  type: 'input',
-                  validateOptions: '',
-                  validateType: 'not_null',
-                  isSort: 0,
-                  isShowInTable: 1,
-                  isSearch: 0
-                },
-                {
-                  FK_Dict: '',
-                  FK_Model: '',
-                  dataType: 'Float',
-                  displayName: '预算',
-                  length: '5',
-                  name: 'budget',
-                  type: 'input',
-                  validateOptions: '',
-                  validateType: 'bigthan_zero',
-                  isSort: 0,
-                  isShowInTable: 1,
-                  isSearch: 0
-                }
-              ]
-            }
-          },
-          {
-            active: true,
-            code: 'user',
-            displayNam: '人员管理',
-            model: {
-              fn: ['query', 'create', 'update', 'delete', 'batch_delete'],
-              views: ['table', 'dialog'],
-              forms: [
-                {
-                  FK_Dict: '',
-                  FK_Model: '',
-                  dataType: 'String',
-                  displayName: '单位',
-                  length: '5',
-                  name: 'unit',
+                  name: 'name',
                   type: 'input',
                   validateOptions: '',
                   validateType: 'not_null',
@@ -85,13 +46,28 @@ export default new Vuex.Store({
                 {
                   FK_Dict: '',
                   FK_Model: '',
-                  dataType: 'Float',
-                  displayName: '预算',
+                  dataType: 'Integer',
+                  displayName: '年龄',
                   length: '5',
-                  name: 'budget',
+                  name: 'age',
                   type: 'input',
                   validateOptions: '',
                   validateType: 'bigthan_zero',
+                  isSort: 0,
+                  isShowInTable: 1,
+                  isSearch: 0,
+                  isRequired: 1
+                },
+                {
+                  FK_Dict: 'gender',
+                  FK_Model: '',
+                  dataType: 'FK_Dict',
+                  displayName: '性别',
+                  length: '5',
+                  name: 'gender',
+                  type: 'select',
+                  validateOptions: '',
+                  validateType: 'not_null',
                   isSort: 0,
                   isShowInTable: 1,
                   isSearch: 0,

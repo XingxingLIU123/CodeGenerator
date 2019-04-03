@@ -35,7 +35,7 @@ const services = function (modules, projectPath, apiPath) {
  * @return getTableData
  */
 const getTableData = param => {
-  return axios.get('${stringUpCase(module.name)}/${stringUpCase(model.code)}/list', param)
+  return axios.get('${stringLowCase(module.name)}/${stringLowCase(model.code)}/list', param)
 }
 `
             )
@@ -49,7 +49,7 @@ const getTableData = param => {
  * @return addTableData
  */
 const addTableData = param => {
-  return axios.post('${stringUpCase(module.name)}/${stringUpCase(model.code)}/list', param)
+  return axios.post('${stringLowCase(module.name)}/${stringLowCase(model.code)}', param)
 }
             `)
             option.apiNames.push('addTableData')
@@ -62,7 +62,7 @@ const addTableData = param => {
  * @return updateTableData
  */
 const updateTableData = param => {
-  return axios.put('${stringUpCase(module.name)}/${stringUpCase(model.code)}/list', param)
+  return axios.put('${stringLowCase(module.name)}/${stringLowCase(model.code)}', param)
 }
             `)
             option.apiNames.push('updateTableData')
@@ -71,11 +71,11 @@ const updateTableData = param => {
             option.apis.push(`
 /**
  * @description 删除数据
- * @param ids id数组
+ * @param id id
  * @return deleteTableData
  */
-const deleteTableData = ids => {
-  return axios.delete('${stringUpCase(module.name)}/${stringUpCase(model.code)}/list', ids)
+const deleteTableData = id => {
+  return axios.delete('${stringLowCase(module.name)}/${stringLowCase(model.code)}/' + id)
 }
             `)
             option.apiNames.push('deleteTableData')
@@ -88,7 +88,7 @@ const deleteTableData = ids => {
  * @return BatchDeleteTableData
  */
 const BatchDeleteTableData = ids => {
-  return axios.delete('${stringUpCase(module.name)}/${stringUpCase(model.code)}/list', ids)
+  return axios.post('${stringLowCase(module.name)}/${stringLowCase(model.code)}', ids)
 }
             `)
             option.apiNames.push('BatchDeleteTableData')
@@ -100,7 +100,7 @@ const BatchDeleteTableData = ids => {
  * @return importTableData
  */
 // const importTableData = ids => {
-//   return axios.delete('${stringUpCase(module.name)}/${stringUpCase(model.code)}/list', ids)
+//   return axios.delete('${stringLowCase(module.name)}/${stringLowCase(model.code)}/list', ids)
 // }
             `)
             break
@@ -112,7 +112,7 @@ const BatchDeleteTableData = ids => {
  * @return exportTableData
  */
 const exportTableData = ids => {
-//   return axios.delete('${stringUpCase(module.name)}/${stringUpCase(model.code)}/list', ids)
+//   return axios.delete('${stringLowCase(module.name)}/${stringLowCase(model.code)}/list', ids)
 }
             `)
             option.apiNames.push('exportTableData')
@@ -124,7 +124,7 @@ const exportTableData = ids => {
  * @return exportTableData
  */
 const batchExportTableData = ids => {
-//   return axios.delete('${stringUpCase(module.name)}/${stringUpCase(model.code)}/list', ids)
+//   return axios.delete('${stringLowCase(module.name)}/${stringLowCase(model.code)}/list', ids)
 }
             `)
             option.apiNames.push('batchExportTableData')

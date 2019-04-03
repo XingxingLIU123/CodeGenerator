@@ -288,6 +288,16 @@ const setOption = (name, model, title) => {
           break;
           case 'batch_export':
           option.fn.fns.batch_export = 'el-button(type="primary" size="small" @click="batchExportData") 批量导出\n'
+          option.methods.push(
+            `
+            /**
+             * @description batchExportData 批量导入
+             * @param {null}
+             */
+            batchExportData () {
+              // do something
+            }`
+          )
           break;
         }
       })
