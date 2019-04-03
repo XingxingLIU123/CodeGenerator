@@ -7,7 +7,7 @@ import com.domita.backend.businese.<%- _moduleName -%>.<%- _lowerName -%>.entity
 import com.domita.backend.businese.<%- _moduleName -%>.<%- _lowerName -%>.repository.<%- _uperName -%>Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.List;
 import javax.transaction.Transactional;
 
 /**

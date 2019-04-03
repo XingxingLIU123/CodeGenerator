@@ -3,8 +3,8 @@ var ejs = require('ejs'),
 let temp = `
 package com.domita.backend.businese.<%- _moduleName -%>.<%- _lowerName -%>.domain;
 
+import com.domita.backend.base.dict.domain.DictModel;
 import lombok.Data;
-improt com.domita.backend.base.dict.domain.DictModel;
 
 /**
  * <%- _displayName -%> Domain模型

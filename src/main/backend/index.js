@@ -86,6 +86,9 @@ const backEnd = (data, path) => {
                 case 'domain':
                 str = domain.code(option)              
               }
+              // if(folder === 'domain'){
+              //   folder = 'model'
+              // }
               const file = fs.writeFileSync(`${path}/${stringUpCase(item.name)}/${stringUpCase(model.code)}/${folder}/${stringUpCase(model.code)}${stringUpCase(folder)}.java`, str)
             })
           })

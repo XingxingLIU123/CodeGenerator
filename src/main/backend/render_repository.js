@@ -6,6 +6,9 @@ package com.domita.backend.businese.<%- _moduleName -%>.<%- _lowerName -%>.repos
 import com.domita.backend.businese.<%- _moduleName -%>.<%- _lowerName -%>.entity.<%- _uperName -%>Entity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import java.util.List;
 
 /**
  * <%- _displayName -%> 模型数据层
