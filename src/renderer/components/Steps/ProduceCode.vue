@@ -47,7 +47,11 @@ export default {
   },
   methods: {
     produceFrontend () {
-      ipc.send('produce-front', this.$store.state.json)
+      ipc.send('produce-front', {
+        data: this.$store.state.json,
+        project: this.$store.state.folder,
+        option: this.$store.state.option
+      })
     },
     cancelModal () {
       this.backendModal = false

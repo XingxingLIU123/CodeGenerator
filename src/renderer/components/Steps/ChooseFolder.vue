@@ -11,6 +11,15 @@
       a-icon(type="inbox")
     p.ant-upload-text 选择项目
     p.ant-upload-hint 请点击或拖拽 文件夹
+  el-form(:model="option" size="small" inline label-width="130px")
+    el-form-item(label="页面入口目录")
+      el-input(v-model="option.main")
+    el-form-item(label="组件目录")
+      el-input(v-model="option.component")
+    el-form-item(label="路由配置文件地址")
+      el-input(v-model="option.routePath")
+    el-form-item(label="api接口文件目录")
+      el-input(v-model="option.apiPath")
   .btn-group.right
     a-button(
       type="primary"
@@ -29,7 +38,13 @@ export default {
   },
   data () {
     return {
-      fileList: []
+      fileList: [],
+      option: {
+        main: '/src/views/pages',
+        component: '/src/components',
+        routePath: '/src/router/router.json',
+        apiPath: '/src/services'
+      }
     }
   },
   methods: {
@@ -44,6 +59,7 @@ export default {
     },
     toNext () {
       this.$store.dispatch('toNext')
+      this.$store.dispatch('updateOption', this.option)
       this.$router.push('/model-setting')
     }
   }

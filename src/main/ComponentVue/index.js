@@ -12,10 +12,10 @@ const component = (model, pathName) => {
     let op = null
     switch (item) {
       case 'table':
-      op = option.setTableOption(model)
+      op = option.default.setTableOption(model)
       break
       case 'dialog':
-      op = option.setDialogOption(model)
+      op = option.default.setDialogOption(model)
     }
     let str = fs.readFileSync(path.join(__dirname, `./template.${item}.ejs`), 'utf8');
     let viewTemp = ejs.render(str, op)

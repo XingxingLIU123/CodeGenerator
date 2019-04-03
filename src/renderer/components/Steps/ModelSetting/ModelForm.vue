@@ -57,6 +57,9 @@
         el-form-item(label="是否在表格显示:" value="isShowInTable")
           el-radio(v-model="form.isShowInTable" :label="0") 否
           el-radio(v-model="form.isShowInTable" :label="1") 是
+        el-form-item(label="是否必填项:" value="isRequired")
+          el-radio(v-model="form.isRequired" :label="0") 否
+          el-radio(v-model="form.isRequired" :label="1") 是
         
     .btn-group
       a-button(@click="reset") 重 置
@@ -154,7 +157,8 @@ export default {
         type: '',
         isSearch: 0,
         isSort: 0,
-        isShowInTable: 0
+        isShowInTable: 0,
+        isRequired: 0
       })
     },
     removeFiled (index) {

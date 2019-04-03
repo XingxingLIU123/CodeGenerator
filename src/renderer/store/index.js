@@ -14,6 +14,7 @@ export default new Vuex.Store({
       { title: '生成代码' }
     ],
     folder: '',
+    option: {},
     json: [
       {
         title: '项目管理',
@@ -57,12 +58,56 @@ export default new Vuex.Store({
                 }
               ]
             }
+          },
+          {
+            active: true,
+            code: 'user',
+            displayNam: '人员管理',
+            model: {
+              fn: ['query', 'create', 'update', 'delete', 'batch_delete'],
+              views: ['table', 'dialog'],
+              forms: [
+                {
+                  FK_Dict: '',
+                  FK_Model: '',
+                  dataType: 'String',
+                  displayName: '单位',
+                  length: '5',
+                  name: 'unit',
+                  type: 'input',
+                  validateOptions: '',
+                  validateType: 'not_null',
+                  isSort: 0,
+                  isShowInTable: 1,
+                  isSearch: 0,
+                  isRequired: 1
+                },
+                {
+                  FK_Dict: '',
+                  FK_Model: '',
+                  dataType: 'Float',
+                  displayName: '预算',
+                  length: '5',
+                  name: 'budget',
+                  type: 'input',
+                  validateOptions: '',
+                  validateType: 'bigthan_zero',
+                  isSort: 0,
+                  isShowInTable: 1,
+                  isSearch: 0,
+                  isRequired: 1
+                }
+              ]
+            }
           }
         ]
       }
     ],
   },
   actions: {
+    updateOption (store, option) {
+      store.commit('UPDATE_OPTION', option)
+    },
     updateJson (store, json) {
       store.commit('UPDATE_JSON', json)
     },
@@ -83,6 +128,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    UPDATE_OPTION (state, option) {
+      state.option = option
+    },
     UPDATE_JSON (state, json) {
       state.json = json
     },

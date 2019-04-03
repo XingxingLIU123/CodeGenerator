@@ -1,5 +1,5 @@
 <template lang="pug">
-.<%= name.replace(/'/g, '') %>
+.flex.<%= name.replace(/'/g, '') %>
 <% if (fn) { -%>
   .operation.layout-row__between
   <% if (fn.query) { -%>
@@ -24,6 +24,7 @@ export default {
   name: <%- name %>,
   title: '<%- title %>',
   icon: '',
+  router: '<%- router %>',
   components: {
 <%- components %>
   },
