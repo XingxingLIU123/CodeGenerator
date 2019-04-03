@@ -12,7 +12,10 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * Domita
  */
 public interface <%- _uperName -%>Repository extends JpaRepository<<%- _uperName -%>Entity, Integer>, JpaSpecificationExecutor<<%- _uperName -%>Entity> {
-
+  
+  @Modifying
+  @Query(value = "delete from <%- _lowerName -%> where id in ?1", nativeQuery = true)
+  public void deleteByIds(List<Integer> ids);
 }
 
 `

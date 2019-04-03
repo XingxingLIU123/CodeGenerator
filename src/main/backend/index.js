@@ -11,8 +11,9 @@ const entity = require('./render_entity')
 const repository = require('./render_repository')
 const service = require('./render_service')
 const patchsql = require('./render_patchsql')
+const domain = require('./render_domain')
 
-const folderNames = ['controller', 'entity', 'repository', 'service', 'patchsql']
+const folderNames = ['controller', 'entity', 'repository', 'service', 'patchsql','domain']
 
 const backEnd = (data, path) => {
   console.log('hewewee')
@@ -39,9 +40,10 @@ const backEnd = (data, path) => {
           item.modelList.forEach(model => {
             let option = {
               // 模块名
-              _moduleName: item.name,
+              _moduleName: item.name,              
               // 模型英文名
               _name: stringUpCase(model.code),
+              
               // 模型首字母大写名
               _uperName: stringUpCase(model.code),
               // 模型首字母小写名
@@ -80,6 +82,9 @@ const backEnd = (data, path) => {
                 break
                 case 'patchsql':
                 str = patchsql.code(option)
+                break
+                case 'domain':
+                str = domain.code(option)              
               }
               const file = fs.writeFileSync(`${path}/${stringUpCase(item.name)}/${stringUpCase(model.code)}/${folder}/${stringUpCase(model.code)}${stringUpCase(folder)}.java`, str)
             })

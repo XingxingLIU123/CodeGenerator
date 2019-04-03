@@ -17,6 +17,8 @@ import com.domita.backend.common.entity.BaseEntity;
 public class <%- _uperName -%>Entity extends BaseEntity {
   <%for (let i = 0; i < _fields.length;i ++) { -%>
     <% let _field = _fields[i] %>
+    <% if(_field._dataType._code === 'FK_Dict'){_field._dataType._code = 'String'} %>
+    <% if(_field._dataType._code === 'FK_Model'){_field._dataType._code = 'Integer'} %>    
     // <%- _field._displayName -%>
 
     private <%- _field._dataType._code -%> <%- _field._name -%>;
@@ -24,6 +26,8 @@ public class <%- _uperName -%>Entity extends BaseEntity {
 
   <%for (let i = 0; i < _fields.length;i ++) { -%>
     <% let _field = _fields[i] %>
+    <% if(_field._dataType._code === 'FK_Dict'){_field._dataType._code = 'String'} %>
+    <% if(_field._dataType._code === 'FK_Model'){_field._dataType._code = 'Integer'} %>
     <% let _fieldUpperName = _field._name.charAt(0).toUpperCase()+ _field._name.substr(1,_field._name.lengh) %>
     // <%- _field._displayName -%>
 
