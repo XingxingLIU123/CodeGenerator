@@ -12,18 +12,19 @@ let PERMISSION = {
   batch_export: '批量导出'
 }
 let temp = `
-<%for (let i = 0; i < _fns.length;i ++) { %>
+<% for (let i = 0; i < _fns.length;i ++) { %>
   <% let _fn = _fns[i] %>
-  // <%- _fn -%>
+  # <%- _fn -%>
   
-  INSERT INTO test_backend.menu_info (menu_desc, name, path, permission, viewable) VALUES ('<%- PERMISSION{_fn} -%>', '<%- PERMISSION{_fn} -%>', NULL, '_modelName:<%- _fn -%>',  1);
+  INSERT INTO test_backend.menu_info (menu_desc, name, path, permission, viewable) VALUES ('<%- _displayName -%>-<%- PERMISSION[_fn] -%>', '<%- _displayName -%>-<%- PERMISSION[_fn] -%>', NULL, '<%- _uperName -%>:<%- _fn -%>',  1);
 
-<%}%>
+<% } %>
 `
 
   const service = {
     temp: temp,
     code: option => {
+      option.PERMISSION = PERMISSION
       return ejs.render(temp, option)
     }
   }

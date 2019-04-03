@@ -15,15 +15,25 @@ import javax.transaction.Transactional;
  * Domita
  */
 @Service
+@Transactional
 public class <%- _uperName -%>Service {
     @Autowired
     private <%- _uperName -%>Repository <%- _lowerName -%>Repository;
 
-    @Transactional
+    /**
+     * 更新实体
+     */     
     public <%- _uperName -%>Entity get<%- _uperName -%>ById(int id){
       <%- _uperName -%>Entity entity = <%- _lowerName -%>Repository.findById(id).get();
         return entity;
     }
+
+    /**
+     * 根据ids批量删除
+     */
+    public void deleteByIds(List<Integer> ids){
+      <%- _lowerName -%>Repository.deleteByIds(ids);
+    }    
 }
 
 `
