@@ -77,7 +77,7 @@ export default new Vuex.Store({
                 },
                 {
                   FK_Dict: '',
-                  FK_Model: 'teacher',
+                  FK_Model: '/edu/student',
                   FK_Model_displayName: 'name',
                   dataType: 'FK_Model',
                   displayName: '教师',
