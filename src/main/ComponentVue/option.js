@@ -52,7 +52,8 @@ const option = {
         html: '',
         rules: [],
         displayName: item.displayName,
-        name: item.name
+        name: item.name,
+        methods: []
       }
       if (item.isRequired) {
         obj.rules.push({ required: true, message: `${item.displayName}不能为空`})
@@ -89,7 +90,21 @@ const option = {
         case 'select':
         obj.html = `el-select(v-model="form.${item.name}" size="small")\n  el-option(label="" value="")`
         if (item.dataType === 'FK_Dict') {
-          obj.html = `el-select(v-model="form.${item.name}" size="small")\n        el-option(v-for="item in DICTS.${item.FK_Dict}.dicts" :key="item.id" :label="item.dictValueDisplayName" :value="item.dictValue")`
+          obj.html = `el-select(v-model="form.${item.name}" size="small")\n        el-option(v-for="item in DICTS.${item.FK_Dict.split('-')[0]}.dicts" :key="item.id" :label="item.dictValueDisplayName" :value="item.dictValue")`
+        }
+        if (item.dataType === 'FK_Model') {
+          obj.methods(
+            `
+            /**
+             * @description get${stringUpCase(item.FK_Model)}Data 获取${item.displayName}数据
+             * @param {null}
+             */
+            get${stringUpCase(item.FK_Model)}Data () {
+              this.$http.get('')
+            }
+            `
+          )
+          obj.html = `el-select(v-model="form.${item.name}" size="small")\n        el-option(v-for="item in DICTS.${item.FK_Model}.dicts" :key="item.id" :label="item.dictValueDisplayName" :value="item.dictValue")`
         }
         break
         case 'date':
