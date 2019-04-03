@@ -40,8 +40,12 @@ export default {
 <%for (let i = 0; i < forms.length;i ++) { -%>
         <%=forms[i].name-%>: <%- forms[i].defaultValue %>,
 <%}-%>
-      }
+      },
+      <%- datas %>
     }
+  },
+  create () {
+<%- create %>
   },
   methods: {
     /**

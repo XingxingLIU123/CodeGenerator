@@ -19,21 +19,21 @@
       span 字段项
       a-icon.pointer(type="plus" style="align-self: center;margin-left: 10px" @click="addFiled")
     .item
-      el-form(v-for="(form, index) in forms" :model="form" size="small" label-width="120px" inline)
+      el-form(v-for="(form, index) in forms" :model="form" size="small" label-width="140px" inline)
         .title-sub.layout-row
           span 字段{{index + 1}}
           a-icon.pointer(type="close" style="align-self: center;margin-left: 10px" @click="removeFiled(index)")
         el-form-item(label="字段code：" prop="name")
-          el-input(v-model="form.name")
+          el-input(v-model="form.name" placeholder="如果关联字典，命名规则为xxx_dic_id")
         el-form-item(label="字段中文名：" prop="displayName")
-          el-input(v-model="form.displayName")
+          el-input(v-model="form.displayName" placeholder="字段显示的名字")
         el-form-item(label="数据类型：" prop="dataType")
           el-select(v-model="form.dataType")
             el-option(v-for="type in types" :key="type.code" :label="type.name" :value="type.code")
         el-form-item(label="模型关联：" prop="FK_Model" v-if="form.dataType === 'FK_Model'")
           el-input(v-model="form.FK_Model" placeholder="请输入模型code")
         el-form-item(label="模型关联显示名称：" prop="FK_Model_displayName" v-if="form.dataType === 'FK_Model'")
-          el-input(v-model="form.FK_Model_displayName" placeholder="请输入需要显示的模型名称")
+          el-input(v-model="form.FK_Model_displayName" placeholder="格式：/模块名/模型名 如：/edu/student")
         el-form-item(label="字典关联：" prop="FK_Dict" v-if="form.dataType === 'FK_Dict'")
           el-input(v-model="form.FK_Dict" placeholder="请输入字典健名")
         el-form-item(label="数据长度：" prop="length")

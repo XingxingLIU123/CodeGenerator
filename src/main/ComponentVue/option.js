@@ -46,6 +46,9 @@ const option = {
     let op = {}
     op.jsName = `'${stringUpCase(model.code)}Dialog'`
     op.className = `${stringLowCase(model.code)}-dialog`
+    op.datas = []
+    op.methods = []
+    op.create = []
     op.forms = model.model.forms.map(item => {
       let obj = {
         defaultValue: '',
@@ -53,7 +56,6 @@ const option = {
         rules: [],
         displayName: item.displayName,
         name: item.name,
-        methods: []
       }
       if (item.isRequired) {
         obj.rules.push({ required: true, message: `${item.displayName}不能为空`})
@@ -90,29 +92,36 @@ const option = {
         case 'select':
         obj.html = `el-select(v-model="form.${item.name}" size="small")\n  el-option(label="" value="")`
         if (item.dataType === 'FK_Dict') {
-          obj.html = `el-select(v-model="form.${item.name}" size="small")\n        el-option(v-for="item in DICTS.${item.FK_Dict.split('-')[0]}.dicts" :key="item.id" :label="item.dictValueDisplayName" :value="item.dictValue")`
+          obj.html = `el-select(v-model="form.${item.name}" size="small")\n        el-option(v-for="item in DICTS.${item.FK_Dict.split('_')[0]}.dicts" :key="item.id" :label="item.dictValueDisplayName" :value="item.dictValue")`
         }
         if (item.dataType === 'FK_Model') {
-          obj.methods(
-            `
-            /**
-             * @description get${stringUpCase(item.FK_Model)}Data 获取${item.displayName}数据
-             * @param {null}
-             */
-            get${stringUpCase(item.FK_Model)}Data () {
-              this.$http.get('')
-            }
-            `
+          op.create.push(`    this.get${stringUpCase(item.FK_Model.split('/')[item.FK_Model.split('/').length - 1])}Data()`)
+          op.datas.push(`${item.FK_Model.split('/')[item.FK_Model.split('/').length - 1]}: []`)
+          op.methods.push(`
+    /**
+     * @description get${stringUpCase(item.FK_Model.split('/')[item.FK_Model.split('/').length - 1])}Data 获取${item.displayName}数据
+     * @param {null}
+     */
+    get${stringUpCase(item.FK_Model.split('/')[item.FK_Model.split('/').length - 1])}Data () {
+      this.$http.get('${item.FK_Model}/list').then(res => {
+        this.${item.FK_Model.split('/')[item.FK_Model.split('/').length - 1]} = res.data.data
+      })
+    }
+    `
           )
-          obj.html = `el-select(v-model="form.${item.name}" size="small")\n        el-option(v-for="item in DICTS.${item.FK_Model}.dicts" :key="item.id" :label="item.dictValueDisplayName" :value="item.dictValue")`
+          obj.html = `el-select(v-model="form.${item.name}" size="small")\n        el-option(v-for="item in ${item.FK_Model.split('/')[item.FK_Model.split('/').length - 1]}" :key="item.id" :label="item.${item.FK_Model_displayName}" :value="item.id")`
         }
         break
         case 'date':
         obj.html = `el-date-picker(v-model="form.${item.name}" size="small" type="datetime")`
       }
+      
       obj.rules = JSON.stringify(obj.rules)
       return obj
     })
+    op.create = op.create.join(',\n')
+    op.datas = op.datas.join(',\n')
+    op.methods = op.methods.join(',\n')
     return op
   }
 }

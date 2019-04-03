@@ -66,7 +66,7 @@ export default new Vuex.Store({
                   dataType: 'FK_Dict',
                   displayName: '性别',
                   length: '5',
-                  name: 'gender',
+                  name: 'gender_dic_id',
                   type: 'select',
                   validateOptions: '',
                   validateType: 'not_null',
@@ -77,7 +77,7 @@ export default new Vuex.Store({
                 },
                 {
                   FK_Dict: '',
-                  FK_Model: '/edu/student',
+                  FK_Model: '/edu/teacher',
                   FK_Model_displayName: 'name',
                   dataType: 'FK_Model',
                   displayName: '教师',
