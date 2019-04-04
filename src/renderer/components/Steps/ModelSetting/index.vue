@@ -156,7 +156,7 @@ export default {
       })
     },
     toNext () {
-      // this.$store.dispatch('updateJson', this.panes)
+      this.$store.dispatch('updateJson', this.panes)
       this.$store.dispatch('toNext')
       this.$router.push('/produce-code')
     }

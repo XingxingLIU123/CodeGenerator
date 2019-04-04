@@ -16,86 +16,86 @@ export default new Vuex.Store({
     folder: '',
     option: {},
     json: [
-      {
-        title: '教务管理',
-        name: 'edu',
-        modelList: [
-          {
-            active: true,
-            code: 'student',
-            displayName: '学生管理',
-            model: {
-              fn: ['query', 'create', 'update', 'delete', 'batch_delete', 'import', 'export', 'batch_export'],
-              views: ['table', 'dialog'],
-              forms: [
-                {
-                  FK_Dict: '',
-                  FK_Model: '',
-                  dataType: 'String',
-                  displayName: '姓名',
-                  length: '5',
-                  name: 'name',
-                  type: 'input',
-                  validateOptions: '',
-                  validateType: 'not_null',
-                  isSort: 0,
-                  isShowInTable: 1,
-                  isSearch: 0,
-                  isRequired: 1
-                },
-                {
-                  FK_Dict: '',
-                  FK_Model: '',
-                  FK_Model_displayName: '',
-                  dataType: 'Integer',
-                  displayName: '年龄',
-                  length: '5',
-                  name: 'age',
-                  type: 'input',
-                  validateOptions: '',
-                  validateType: 'bigthan_zero',
-                  isSort: 0,
-                  isShowInTable: 1,
-                  isSearch: 0,
-                  isRequired: 1
-                },
-                {
-                  FK_Dict: 'gender_dic_id',
-                  FK_Model: '',
-                  FK_Model_displayName: '',
-                  dataType: 'FK_Dict',
-                  displayName: '性别',
-                  length: '5',
-                  name: 'gender_dic_id',
-                  type: 'select',
-                  validateOptions: '',
-                  validateType: 'not_null',
-                  isSort: 0,
-                  isShowInTable: 1,
-                  isSearch: 0,
-                  isRequired: 1
-                },
-                {
-                  FK_Dict: '',
-                  FK_Model: '/edu/teacher',
-                  FK_Model_displayName: 'name',
-                  dataType: 'FK_Model',
-                  displayName: '教师',
-                  length: '5',
-                  name: 'teacher_id',
-                  type: 'select',
-                  validateOptions: '',
-                  validateType: 'not_null',
-                  isSort: 0,
-                  isShowInTable: 1,
-                  isSearch: 0,
-                  isRequired: 1
-                },
-              ]
-            }
-          }
-        ]
-      }
+      // {
+      //   title: '教务管理',
+      //   name: 'edu',
+      //   modelList: [
+      //     {
+      //       active: true,
+      //       code: 'student',
+      //       displayName: '学生管理',
+      //       model: {
+      //         fn: ['query', 'create', 'update', 'delete', 'batch_delete', 'import', 'export', 'batch_export'],
+      //         views: ['table', 'dialog'],
+      //         forms: [
+      //           {
+      //             FK_Dict: '',
+      //             FK_Model: '',
+      //             dataType: 'String',
+      //             displayName: '姓名',
+      //             length: '5',
+      //             name: 'name',
+      //             type: 'input',
+      //             validateOptions: '',
+      //             validateType: 'not_null',
+      //             isSort: 0,
+      //             isShowInTable: 1,
+      //             isSearch: 0,
+      //             isRequired: 1
+      //           },
+      //           {
+      //             FK_Dict: '',
+      //             FK_Model: '',
+      //             FK_Model_displayName: '',
+      //             dataType: 'Integer',
+      //             displayName: '年龄',
+      //             length: '5',
+      //             name: 'age',
+      //             type: 'input',
+      //             validateOptions: '',
+      //             validateType: 'bigthan_zero',
+      //             isSort: 0,
+      //             isShowInTable: 1,
+      //             isSearch: 0,
+      //             isRequired: 1
+      //           },
+      //           {
+      //             FK_Dict: 'gender_dic_id',
+      //             FK_Model: '',
+      //             FK_Model_displayName: '',
+      //             dataType: 'FK_Dict',
+      //             displayName: '性别',
+      //             length: '5',
+      //             name: 'gender_dic_id',
+      //             type: 'select',
+      //             validateOptions: '',
+      //             validateType: 'not_null',
+      //             isSort: 0,
+      //             isShowInTable: 1,
+      //             isSearch: 0,
+      //             isRequired: 1
+      //           },
+      //           {
+      //             FK_Dict: '',
+      //             FK_Model: '/edu/teacher',
+      //             FK_Model_displayName: 'name',
+      //             dataType: 'FK_Model',
+      //             displayName: '教师',
+      //             length: '5',
+      //             name: 'teacher_id',
+      //             type: 'select',
+      //             validateOptions: '',
+      //             validateType: 'not_null',
+      //             isSort: 0,
+      //             isShowInTable: 1,
+      //             isSearch: 0,
+      //             isRequired: 1
+      //           },
+      //         ]
+      //       }
+      //     }
+      //   ]
+      // }
     ],
   },
   actions: {

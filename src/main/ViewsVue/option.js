@@ -72,17 +72,21 @@ const setOption = (name, model, title) => {
                  * @param {Object} row 当前行数据
                  */
                 deleteRow (row) {
-                  // TODO: 确定ids是数组还是字符串
-                  let ids = [row.id]
-                  deleteTableData(id).then(res => {
-                    if (res.data.code == 200) {
-                      this.$message.success('数据删除成功')
-                      this.getTableData()
-                    } else {
-                      this.$message.error('数据删除失败')
-                    }
-                  }).catch(e => {
-                    this.$message.error('数据删除失败, 请稍后再试')
+                  this.$confirm('此操作将删除数据，是否继续？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                  }).then(() => {
+                    deleteTableData(row.id).then(res => {
+                      if (res.data.code == 200) {
+                        this.$message.success('数据删除成功')
+                        this.getTableData()
+                      } else {
+                        this.$message.error('数据删除失败')
+                      }
+                    }).catch(e => {
+                      this.$message.error('数据删除失败, 请稍后再试')
+                    })
                   })
                 }
                 `

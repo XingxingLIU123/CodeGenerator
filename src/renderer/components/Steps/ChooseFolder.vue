@@ -1,5 +1,14 @@
 <template lang="pug">
 .flex.layout-column__between
+  el-popover(
+    placement="top-start"
+    width="200"
+    trigger="hover"
+  )
+    div 1. 该工具前端框架为Vue
+    div 2. 需要有路由json配置文件, 并且在router/index.js中引入并诶之
+    div 3. 前端默认模版参考 https://github.com/XingxingLIU123/vue-template
+    el-button(slot="reference" icon="el-icon-info" circle)
   a-upload-dragger(
     name="file"
     :remove="handleRemove"
@@ -9,7 +18,7 @@
   )
     p.ant-upload-drag-icon
       a-icon(type="inbox")
-    p.ant-upload-text 选择项目
+    p.ant-upload-text 选择项目根目录
     p.ant-upload-hint 请点击或拖拽 文件夹
   el-form(:model="option" size="small" inline label-width="130px")
     el-form-item(label="页面入口目录")
@@ -70,7 +79,6 @@ export default {
 .ant-upload.ant-upload-drag{
   width: 50%;
   margin: 0 auto;
-  margin-top: 5vh;
 }
 </style>
 
